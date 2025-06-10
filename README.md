@@ -16,7 +16,7 @@ Imagine you have a server with:
 
 The code in `server1.js` simulates this scenario with a fake server.
 
-Run the code with `node server1.js` to simulate 10 parallel requests
+> Run the code with `node server1.js` to simulate 10 parallel requests
 
 ## The problem
 
@@ -25,9 +25,9 @@ One problem we see in the logs is the lack of context. We don't know which of th
 - One easy solution is to pass the `id` created in the handler to the logger everytime we want to log something.
 - The problem is that we need to pass `requestId` to all functions, even the ones that are unrelated, only to have nice logs.
 
-You can see the updated code in `server2.js`. Run it with `node server2.js`.
+You can see the updated code in `server2.js`.
 
-And we can't create a global variable `requestId` because requests are incoming in parallel
+> Run the code with `node server2.js`.
 
 ## AsyncLocalStorage
 
@@ -61,4 +61,6 @@ async function handler() {
 }
 ```
 
-See the updated code in `server3.js`. Notice how `readData` function does NOT accept any parameters. Notice also that logger is not being called with ID anymore
+See the updated code in `server3.js`. Notice how neither `getData` nor `logger` get the ID as parameter.
+
+> Run the code with `node server3.js`
